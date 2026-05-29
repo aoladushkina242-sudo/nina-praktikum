@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ваш Клиент не лид — Нина Плюснина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Caveat:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#EDE4D3;
+  --ink:#0F0905;
+  --ink-mid:#2A1C10;
+  --ink-light:#6A5848;
+  --ink-faint:#9A8878;
+  --rust:#7A3318;
+  --gold:#8C6A3A;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:18px;
+  line-height:1.84;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(15,9,5,0.05) 29px,rgba(15,9,5,0.05) 30px);
+  pointer-events:none;z-index:0;
+}
+
+/* ── LAYOUT ── */
+.page{
+  position:relative;z-index:1;
+  max-width:820px;
+  margin:0 auto;
+  padding:56px 52px 88px 220px;
+}
+
+/* ── LEFT MARGIN ── */
+.margin{
+  position:absolute;
+  left:0;width:196px;
+  top:0;bottom:0;
+  padding:100px 0 0 28px;
+  display:flex;flex-direction:column;gap:0;
+  border-right:1px solid rgba(122,51,24,0.16);
+}
+.margin-note{
+  font-family:'Caveat',cursive;
+  font-size:15.5px;color:var(--rust);
+  line-height:1.5;font-weight:500;
+  padding:13px 12px 13px 0;
+  border-bottom:0.5px solid rgba(122,51,24,0.12);
+  opacity:0.85;
+}
+.margin-note:last-child{border-bottom:none}
+.margin-arr{font-size:12px;opacity:0.4;margin-right:3px}
+
+/* ── FLOATING ASIDE ── */
+.aside-note{
+  display:block;float:right;clear:right;
+  width:164px;
+  margin-right:-192px;
+  margin-left:20px;margin-bottom:16px;
+  font-family:'Caveat',cursive;
+  font-size:16.5px;color:var(--rust);
+  font-weight:500;line-height:1.5;
+  border-left:2px solid rgba(122,51,24,0.3);
+  padding-left:11px;opacity:0.85;
+}
+
+/* ── META STRIP ── */
+.letter-meta{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:40px;padding-bottom:14px;
+  border-bottom:0.5px solid rgba(15,9,5,0.18);
+}
+.meta-left{font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-faint);font-weight:400}
+.meta-right{font-family:'Caveat',cursive;font-size:19px;color:var(--ink-faint);font-weight:400}
+
+/* ── PRE-TITLE SUBTITLE ── */
+.pre-title{
+  font-size:15px;
+  color:var(--ink-faint);
+  font-weight:300;
+  letter-spacing:0.02em;
+  margin-bottom:20px;
+  font-style:italic;
+}
+
+/* ── GREETING — просто рукопись, без обводки ── */
+.greeting{
+  font-family:'Caveat',cursive;
+  font-size:48px;
+  color:var(--ink);
+  font-weight:500;
+  line-height:1.1;
+  margin-bottom:10px;
+  display:block;
+}
+
+/* ── INTRO HAND NOTE ── */
+.intro-hand{
+  font-family:'Caveat',cursive;
+  font-size:22px;
+  color:var(--rust);
+  font-weight:500;
+  line-height:1.55;
+  margin-bottom:28px;
+  display:block;
+}
+
+/* ── TITLE ── */
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,6.5vw,74px);
+  font-weight:700;line-height:1.0;
+  color:var(--ink);margin-bottom:28px;
+  letter-spacing:-0.02em;
+}
+.hero-title .accent{color:var(--rust);font-style:italic;font-weight:400}
+
+/* ── BODY TEXT ── */
+.body-p{
+  font-size:17.5px;color:var(--ink-mid);
+  line-height:1.86;font-weight:300;margin-bottom:20px;
+}
+.body-p strong{font-weight:600;color:var(--ink)}
+
+/* ── HAND INLINE ── */
+.hand{
+  font-family:'Caveat',cursive;
+  font-size:21px;color:var(--rust);
+  font-weight:600;line-height:1;
+}
+
+/* ── HANDWRITE BLOCK ── */
+.hand-block{
+  font-family:'Caveat',cursive;
+  font-size:22px;color:var(--rust);
+  font-weight:600;line-height:1.5;
+  margin:28px 0 22px;
+  padding:14px 20px;
+  border-left:3px solid rgba(122,51,24,0.28);
+  background:rgba(122,51,24,0.04);
+  position:relative;
+}
+.hand-block::before{
+  content:'✎';position:absolute;
+  left:-14px;top:10px;
+  font-size:17px;color:var(--rust);opacity:0.35;
+}
+
+/* ── HAND REMARK (вместо цитаты) ── */
+.hand-remark{
+  font-family:'Caveat',cursive;
+  font-size:26px;color:var(--ink-mid);
+  font-weight:500;line-height:1.45;
+  margin:32px 0;
+  text-align:center;
+  opacity:0.75;
+}
+
+/* ── DIVIDER ── */
+.sec-divider{display:flex;align-items:center;gap:14px;margin:36px 0 26px}
+.sec-divider-line{flex:1;height:0.5px;background:rgba(15,9,5,0.16)}
+.sec-divider-label{font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;white-space:nowrap}
+
+/* ── MODULES ── */
+.modules{display:flex;flex-direction:column;gap:1px;background:rgba(15,9,5,0.1);margin-bottom:36px}
+.module-item{background:var(--paper)}
+.module-header{
+  display:grid;grid-template-columns:76px 1fr auto 28px;
+  align-items:center;
+  padding:15px 0;cursor:pointer;
+  border-bottom:0.5px solid rgba(15,9,5,0.08);
+  transition:background .2s;user-select:none;
+}
+.module-header:hover{background:rgba(15,9,5,0.03)}
+.module-date{font-family:'Caveat',cursive;font-size:17px;color:var(--rust);font-weight:600;padding-right:12px;white-space:nowrap}
+.module-name{font-size:16.5px;font-weight:500;color:var(--ink);line-height:1.3}
+.module-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--ink-light);white-space:nowrap;padding:0 14px 0 12px}
+.module-toggle{
+  width:26px;height:26px;border:0.5px solid rgba(15,9,5,0.18);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .3s;
+}
+.module-toggle svg{transition:transform .35s;fill:none;stroke:var(--gold);stroke-width:1.6}
+.module-item.open .module-toggle{background:rgba(15,9,5,0.06);border-color:var(--gold)}
+.module-item.open .module-toggle svg{transform:rotate(180deg)}
+.module-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.module-body-inner{padding:18px 0 24px 76px;border-bottom:0.5px solid rgba(15,9,5,0.08)}
+.module-desc{font-size:15.5px;color:var(--ink-mid);line-height:1.82;font-weight:300;margin-bottom:14px}
+.module-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.module-list li{
+  font-size:15px;color:var(--ink-mid);line-height:1.65;
+  font-weight:300;padding-left:18px;position:relative;
+}
+.module-list li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.7}
+
+/* ── FOR WHOM ── */
+.for-whom{
+  background:rgba(15,9,5,0.04);
+  border-left:2px solid var(--gold);
+  padding:22px 28px;margin:8px 0 32px;
+}
+.for-whom-title{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;margin-bottom:14px}
+.for-whom-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.for-whom-list li{font-size:16.5px;color:var(--ink-mid);line-height:1.65;font-weight:300;padding-left:18px;position:relative}
+.for-whom-list li::before{content:'—';position:absolute;left:0;color:var(--gold)}
+.not-for{font-size:14px;color:var(--ink-light);line-height:1.7;font-weight:300;margin-top:14px;padding-top:14px;border-top:0.5px solid rgba(15,9,5,0.1)}
+.not-for strong{font-weight:500;color:var(--ink-mid)}
+
+/* ── PRICING ── */
+.pricing{margin:8px 0 8px}
+.pricing-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:0.5px solid rgba(15,9,5,0.1);gap:16px}
+.pricing-row:first-child{border-top:0.5px solid rgba(15,9,5,0.1)}
+.pricing-name{font-size:16.5px;color:var(--ink-mid);font-weight:300;flex:1;line-height:1.4}
+.pricing-note{font-family:'Caveat',cursive;font-size:15px;color:var(--rust);font-weight:500;display:block;margin-top:2px}
+.pricing-price{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--ink);white-space:nowrap}
+.pricing-row.featured .pricing-name{font-weight:500;color:var(--ink)}
+.pricing-row.featured .pricing-price{font-size:30px;color:var(--rust)}
+.pricing-old{font-size:13px;color:var(--ink-faint);text-decoration:line-through;margin-right:6px}
+
+/* ── GUARANTEE ── */
+.guarantee{
+  font-family:'Caveat',cursive;font-size:18px;
+  color:var(--ink-light);text-align:center;
+  margin:20px 0 32px;font-weight:500;
+}
+
+/* ── CTA ── */
+.cta-block{text-align:center;margin:32px 0 12px}
+.cta-btn{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  text-decoration:none;font-size:15px;font-weight:500;
+  letter-spacing:0.07em;padding:19px 68px;
+  transition:background .25s;
+}
+.cta-btn:hover{background:var(--rust)}
+.cta-sub{font-size:12px;color:var(--ink-faint);margin-top:10px;font-weight:300}
+
+/* ── SIGN OFF ── */
+.signoff{margin-top:48px;padding-top:28px;border-top:0.5px solid rgba(15,9,5,0.14)}
+.signoff-text{font-family:'Caveat',cursive;font-size:28px;color:var(--ink);font-weight:600;line-height:1.4;margin-bottom:6px}
+.signoff-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--ink-faint);font-weight:400}
+
+/* ── RESPONSIVE ── */
+@media(max-width:720px){
+  .page{padding:40px 24px 64px 24px}
+  .margin{display:none}
+  .aside-note{display:none}
+  .hero-title{font-size:44px}
+  .greeting{font-size:38px}
+  .module-header{grid-template-columns:66px 1fr 24px}
+  .module-body-inner{padding-left:66px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ЛЕВЫЕ ПОЛЯ -->
+  <div class="margin">
+    <div class="margin-note"><span class="margin-arr">←</span> не «трафик»,<br>а живые люди</div>
+    <div class="margin-note"><span class="margin-arr">←</span> 30 мин теории —<br>остальное разборы</div>
+    <div class="margin-note"><span class="margin-arr">←</span> июнь,<br>по воскресеньям</div>
+    <div class="margin-note"><span class="margin-arr">←</span> смыслы важнее<br>воронок</div>
+    <div class="margin-note"><span class="margin-arr">←</span> ценность, а не<br>«ещё одно обучение»</div>
+    <div class="margin-note"><span class="margin-arr">←</span> меняется<br>вектор мышления</div>
+  </div>
+
+  <!-- META -->
+  <div class="letter-meta">
+    <span class="meta-left">Практикум · Июнь · Zoom</span>
+    <span class="meta-right">лично вам</span>
+  </div>
+
+  <!-- PRE-TITLE — серым, курсивом -->
+  <p class="pre-title">Письмо тем, кто чувствует, что рынок изменился</p>
+
+  <!-- GREETING — рукопись без обводки -->
+  <span class="greeting">Здравствуйте.</span>
+
+  <!-- ВВОДНАЯ РУКОПИСНАЯ ФРАЗА -->
+  <span class="intro-hand">У меня есть хорошие новости.</span>
+
+  <!-- TITLE -->
+  <h1 class="hero-title">Ваш Клиент не лид,<br>а <span class="accent">Человек</span></h1>
+
+  <!-- INTRO -->
+  <p class="body-p">Моя задача — не загрузить вас новой теорией. Моя задача — помочь вам иначе посмотреть на собственный проект, рынок и коммуникацию с людьми. Потому что вслед за этим начнут меняться действия. А вслед за действиями — результаты.</p>
+
+  <!-- FLOATING ASIDE -->
+  <span class="aside-note">30 мин теории — остальное ваши проекты</span>
+
+  <!-- HAND BLOCK: формат -->
+  <div class="hand-block">Формат работы максимально прикладной. Теории будет немного — примерно 30-минутная лекция в начале каждой встречи.</div>
+
+  <p class="body-p">Дальше — разборы по разным сегментам, нишам, чекам или продуктам. Это нужно для того, чтобы сразу возникало понимание: <span class="hand">как всё выглядит не в теории, а в жизни</span>. Как новые смыслы встраиваются в конкретный блог, продукт, воронку, продажи и коммуникацию.</p>
+
+  <!-- FLOATING ASIDE -->
+  <span class="aside-note">каждое воскресенье, Zoom, 3–5 часов</span>
+
+  <!-- HAND BLOCK: расписание -->
+  <div class="hand-block">Каждое воскресенье в июне мы будем встречаться в Zoom на 3–5 часов и вместе работать над вашими проектами. После встреч остаётся чат, где вы сможете задавать вопросы. Я буду отвечать голосовыми сообщениями или текстом, если что-то останется непонятным.</div>
+
+  <!-- HAND REMARK -->
+  <p class="hand-remark">Наша задача — не стать «немного умнее».<br>Наша задача — начать иначе действовать.</p>
+
+  <!-- ВСТРЕЧИ -->
+  <div class="sec-divider">
+    <div class="sec-divider-line"></div>
+    <div class="sec-divider-label">Четыре встречи</div>
+    <div class="sec-divider-line"></div>
+  </div>
+
+  <div class="modules">
+    <div class="module-item" id="m1">
+      <div class="module-header" onclick="toggleModule('m1')">
+        <span class="module-date">07 июня</span>
+        <span class="module-name">Человеческий контент и смыслы</span>
+        <span class="module-price">8 500 ₽</span>
+        <div class="module-toggle"><svg width="12" height="12" viewBox="0 0 12 12"><polyline points="1,3 6,9 11,3"/></svg></div>
+      </div>
+      <div class="module-body"><div class="module-body-inner">
+        <p class="module-desc">Будем разбираться, как меняется внимание современного потребителя. Пересобирать вашу коммуникацию под то, как люди сегодня смотрят, читают и принимают решения.</p>
+        <ul class="module-list">
+          <li>Что сегодня говорить в блоге и как формировать вовлечение</li>
+          <li>Какие форматы становятся актуальными — смыслы в рилсах и контенте</li>
+          <li>Как формировать доверие без давления</li>
+          <li>Как создавать не просто блог для читателей, а интеллектуальное пространство соучастников</li>
+          <li>Как помогать Человеку делать выбор среди огромного количества информации и продуктов</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="module-item" id="m2">
+      <div class="module-header" onclick="toggleModule('m2')">
+        <span class="module-date">14 июня</span>
+        <span class="module-name">Инструменты человечных продаж</span>
+        <span class="module-price">8 500 ₽</span>
+        <div class="module-toggle"><svg width="12" height="12" viewBox="0 0 12 12"><polyline points="1,3 6,9 11,3"/></svg></div>
+      </div>
+      <div class="module-body"><div class="module-body-inner">
+        <p class="module-desc">Не воронки и технические инструменты — мы обсудим смыслы и правильное выстраивание отношений с вашим Клиентом.</p>
+        <ul class="module-list">
+          <li>Как формулировать предложения, в которых Человек чувствует уважение</li>
+          <li>Продающие тексты без давления и манипуляций</li>
+          <li>Как формировать путь Клиента, по которому он хочет идти сам</li>
+          <li>Как проводить человеческие кастдевы и доставать из них важные смысловые формулировки</li>
+          <li>Как продавать без напряжения — для себя и для клиента</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="module-item" id="m3">
+      <div class="module-header" onclick="toggleModule('m3')">
+        <span class="module-date">21 июня</span>
+        <span class="module-name">Продукты для Человека</span>
+        <span class="module-price">8 500 ₽</span>
+        <div class="module-toggle"><svg width="12" height="12" viewBox="0 0 12 12"><polyline points="1,3 6,9 11,3"/></svg></div>
+      </div>
+      <div class="module-body"><div class="module-body-inner">
+        <p class="module-desc">Проработаем идеи новых продуктов или пересоберём существующие под современные запросы. Разберёмся, в каких продуктах люди больше не готовы участвовать.</p>
+        <ul class="module-list">
+          <li>Продуктовые линейки, трипваеры, переходы между продуктами</li>
+          <li>Ценообразование и форматы под новые реалии</li>
+          <li>Логика пути Клиента между вашими продуктами</li>
+          <li>Как создавать продукты, в которых человек видит реальную ценность, а не очередное «обучение»</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="module-item" id="m4">
+      <div class="module-header" onclick="toggleModule('m4')">
+        <span class="module-date">28 июня</span>
+        <span class="module-name">Позиционирование и упаковка</span>
+        <span class="module-price">8 500 ₽</span>
+        <div class="module-toggle"><svg width="12" height="12" viewBox="0 0 12 12"><polyline points="1,3 6,9 11,3"/></svg></div>
+      </div>
+      <div class="module-body"><div class="module-body-inner">
+        <p class="module-desc">Переупаковка действующих проектов под новые запросы рынка. Особенно поможет тем, кто задаётся вопросом: «Как объяснить, кто я и чем я занимаюсь?»</p>
+        <ul class="module-list">
+          <li>Сложные ниши и стартовые проекты</li>
+          <li>Позиционирование оверквалифицированных экспертов</li>
+          <li>Как отстроиться в «красных нишах»</li>
+          <li>Переупаковка под новые запросы — без потери себя</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- FOR WHOM -->
+  <div class="sec-divider">
+    <div class="sec-divider-line"></div>
+    <div class="sec-divider-label">Для кого</div>
+    <div class="sec-divider-line"></div>
+  </div>
+
+  <div class="for-whom">
+    <div class="for-whom-title">Практикум подойдёт</div>
+    <ul class="for-whom-list">
+      <li>Тем, кто понимает, что рынок меняется и старые способы работают слабее</li>
+      <li>Тем, кому нужна не очередная механика, а смысловая эволюция проекта</li>
+      <li>Тем, кто хочет продавать без давления — и понять, как это вообще работает</li>
+      <li>Тем, кто готов думать самостоятельно и участвовать в изменениях своего проекта</li>
+    </ul>
+    <div class="not-for"><strong>Не подойдёт:</strong> офлайн-бизнесам, b2b-продажам, недвижимости, MLM, а также тем, кто ищет готовые универсальные схемы без погружения в проект.</div>
+  </div>
+
+  <!-- СТОИМОСТЬ -->
+  <div class="sec-divider">
+    <div class="sec-divider-line"></div>
+    <div class="sec-divider-label">Стоимость участия</div>
+    <div class="sec-divider-line"></div>
+  </div>
+
+  <div class="pricing">
+    <div class="pricing-row">
+      <span class="pricing-name">Один модуль на выбор</span>
+      <span class="pricing-price">8 500 ₽</span>
+    </div>
+    <div class="pricing-row featured">
+      <div>
+        <div class="pricing-name">Полный практикум</div>
+        <span class="pricing-note">выгоднее, чем 4 модуля по отдельности</span>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <span class="pricing-old">34 000 ₽</span>
+        <span class="pricing-price">25 500 ₽</span>
+      </div>
+    </div>
+    <div class="pricing-row">
+      <span class="pricing-name">Полный практикум в рассрочку</span>
+      <span class="pricing-price">29 250 ₽</span>
+    </div>
+  </div>
+
+  <p class="guarantee">Если в процессе поймём, что практикум вам не подходит — я сделаю возврат.</p>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <a href="https://ninaplyusnina.ru/clientnotlead" class="cta-btn" target="_blank">Присоединиться</a>
+    <p class="cta-sub">Контактные данные — внутри виджета. Оплата на платформе.</p>
+  </div>
+
+  <!-- SIGN OFF -->
+  <div class="signoff">
+    <div class="signoff-text">До встречи в июне</div>
+    <div class="signoff-name">Нина Плюснина</div>
+  </div>
+
+</div>
+<script>
+function toggleModule(id){
+  var item=document.getElementById(id);
+  var body=item.querySelector('.module-body');
+  if(item.classList.contains('open')){
+    body.style.maxHeight='0';item.classList.remove('open');
+  } else {
+    body.style.maxHeight=body.scrollHeight+'px';item.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
